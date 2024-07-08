@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - connect-mysql
+    networks:
+      - atende
+
+  connect-mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    networks:
+      - atende
+
+networks:
+  atende:
+    driver: bridge
